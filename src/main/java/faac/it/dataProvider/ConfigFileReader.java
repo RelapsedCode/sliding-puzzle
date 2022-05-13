@@ -2,10 +2,8 @@ package faac.it.dataProvider;
 
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -59,7 +57,6 @@ public class ConfigFileReader {
 						.toArray(String[]::new));
 			}
 			writer.close();
-			//			log.info("State saved to csv successfully");
 	}
 
 }
