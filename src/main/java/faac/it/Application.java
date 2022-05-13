@@ -20,7 +20,7 @@ public class Application {
 		Scanner sc = new Scanner(System.in);
 
 		while (true) {
-			if (puzzleGrid.isPuzzleSolved()) {
+			while (puzzleGrid.isPuzzleSolved()) {
 				log.info("\nWould you like to start a new game? yes/no");
 				String answer = sc.nextLine();
 				switch (answer.toLowerCase(Locale.ROOT)) {
