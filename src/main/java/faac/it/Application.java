@@ -2,7 +2,6 @@ package faac.it;
 
 import static faac.it.PuzzleGrid.findEmptyCell;
 
-import java.io.FileNotFoundException;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -33,7 +32,7 @@ public class Application {
 						puzzleGrid.printPuzzleState();
 					}
 					case "no" -> System.exit(0);
-					default -> log.warn("PLease select a valid option. yes/no");
+					default -> log.warn("Please select a valid option. yes/no");
 				}
 			}
 			log.info("\nYour next move: ");

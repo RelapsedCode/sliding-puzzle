@@ -7,7 +7,6 @@ import java.util.stream.Stream;
 import faac.it.exceptions.OutOfBoundariesException;
 import faac.it.exceptions.WrongDirectionException;
 import lombok.Data;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
