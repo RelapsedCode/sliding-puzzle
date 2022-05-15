@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 import faac.it.dataProvider.ConfigFileReader;
 import faac.it.exceptions.OutOfBoundariesException;
+import faac.it.exceptions.WrongDirectionException;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -39,7 +40,7 @@ public class Application {
 			String dir = sc.nextLine();
 			try {
 				puzzleGrid.moveEmptyCell(findEmptyCell(puzzleGrid.getPuzzleCurrentState(), 0), dir);
-			} catch (OutOfBoundariesException ex) {
+			} catch (OutOfBoundariesException | WrongDirectionException ex) {
 				ex.printStackTrace();
 			}
 			puzzleGrid.printPuzzleState();
