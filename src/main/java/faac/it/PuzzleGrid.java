@@ -4,7 +4,9 @@ import java.util.Locale;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+import faac.it.exceptions.OutOfBoundariesException;
 import lombok.Data;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -25,7 +27,7 @@ public class PuzzleGrid {
 		return new int[] { -1, -1 };
 	}
 
-	public void moveEmptyCell(int[] emptyCellLocation, String directionToMove) {
+	public void moveEmptyCell(int[] emptyCellLocation, String directionToMove) throws OutOfBoundariesException {
 		int[] newEmptyCellLocation = emptyCellLocation.clone();
 		int row = emptyCellLocation[0];
 		int col = emptyCellLocation[1];
@@ -59,7 +61,8 @@ public class PuzzleGrid {
 				break;
 			default:
 				swappedCellValue = -1;
-				log.warn(directionToMove + " is invalid direction. No move action has been performed. Correct directions: up, down, left, right");
+				log.error("[ERROR LOG] " + directionToMove + " is invalid direction. No move action has been performed. Correct directions: up, down, left, right.");
+				throw new OutOfBoundariesException("[EXCEPTION MSG] " + directionToMove + " is invalid direction. No move action has been performed. Correct directions: up, down, left, right.");
 		}
 
 		if (swappedCellValue > 0) {
@@ -67,7 +70,8 @@ public class PuzzleGrid {
 			newPuzzleState[newEmptyCellLocation[0]][newEmptyCellLocation[1]] = 0;
 			this.setPuzzleCurrentState(newPuzzleState);
 		} else if (swappedCellValue == 0) {
-			log.warn(directionToMove + " is out of boundaries, please try another direction.");
+			log.error("[ERROR LOG] " + directionToMove + " is out of boundaries, please try another direction.");
+			throw new OutOfBoundariesException("[EXCEPTION MSG] " + directionToMove + " is out of boundaries, please try another direction.");
 		}
 	}
 

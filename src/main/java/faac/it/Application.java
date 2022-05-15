@@ -2,10 +2,12 @@ package faac.it;
 
 import static faac.it.PuzzleGrid.findEmptyCell;
 
+import java.io.FileNotFoundException;
 import java.util.Locale;
 import java.util.Scanner;
 
 import faac.it.dataProvider.ConfigFileReader;
+import faac.it.exceptions.OutOfBoundariesException;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -35,7 +37,11 @@ public class Application {
 			}
 			log.info("\nYour next move: ");
 			String dir = sc.nextLine();
-			puzzleGrid.moveEmptyCell(findEmptyCell(puzzleGrid.getPuzzleCurrentState(), 0), dir);
+			try {
+				puzzleGrid.moveEmptyCell(findEmptyCell(puzzleGrid.getPuzzleCurrentState(), 0), dir);
+			} catch (OutOfBoundariesException ex) {
+				ex.printStackTrace();
+			}
 			puzzleGrid.printPuzzleState();
 			ConfigFileReader.savePuzzleStateToCSV(puzzleGrid.getPuzzleCurrentState());
 		}
